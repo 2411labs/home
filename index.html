@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2411labs</title>
+    <meta
+      name="description"
+      content="2411labs builds private, focused apps and games."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="topbar">
+        <a class="brand" href="/">2411labs</a>
+        <div class="contact-wrap">
+          <button
+            type="button"
+            class="top-cta"
+            id="contact-copy-btn"
+            aria-describedby="contact-copy-tooltip"
+          >
+            Contact
+          </button>
+          <span
+            id="contact-copy-tooltip"
+            class="copy-tooltip"
+            role="status"
+            aria-live="polite"
+            hidden
+            >Email copied</span>
+        </div>
+      </header>
+
+      <main>
+        <section class="intro">
+          <p class="kicker">Apps + games studio</p>
+          <h1>Simple digital products that stay out of your way.</h1>
+          <p class="lead">
+            We build focused software with clean design and private-first defaults.
+          </p>
+        </section>
+
+        <section class="grid" aria-label="Products">
+          <article class="product product-pocketlog">
+            <div class="product-head">
+              <p class="product-kind">Expense app</p>
+              <div class="product-title">
+                <img
+                  class="app-icon"
+                  src="pocketlog.png"
+                  alt="PocketLog app icon"
+                  loading="lazy"
+                />
+                <h2>PocketLog</h2>
+              </div>
+            </div>
+            <div class="product-body">
+              <p class="tagline">Log your money. Nothing else.</p>
+              <p class="description">Quick and private money logging for daily use.</p>
+            </div>
+            <div class="product-action">
+              <a
+                class="store-link"
+                href="https://play.google.com/store/apps/details?id=com.twentyfour11.pocketlog"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><span class="playstore-icon" aria-hidden="true">▶</span>View on Play Store</a
+              >
+            </div>
+            <a
+              class="card-link"
+              href="https://play.google.com/store/apps/details?id=com.twentyfour11.pocketlog"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open PocketLog on Play Store"
+            ></a>
+          </article>
+
+          <article class="product product-recall">
+            <div class="product-head">
+              <p class="product-kind">Memory app</p>
+              <div class="product-title">
+                <img
+                  class="app-icon"
+                  src="recall.png"
+                  alt="Recall app icon"
+                  loading="lazy"
+                />
+                <h2>Recall</h2>
+              </div>
+            </div>
+            <div class="product-body">
+              <p class="tagline">Save what matters. Find it instantly.</p>
+              <p class="description">
+                A secure offline place for important notes and details.
+              </p>
+            </div>
+            <div class="product-action">
+              <a
+                class="store-link"
+                href="https://play.google.com/store/apps/details?id=com.twentyfour11.recall"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><span class="playstore-icon" aria-hidden="true">▶</span>View on Play Store</a
+              >
+            </div>
+            <a
+              class="card-link"
+              href="https://play.google.com/store/apps/details?id=com.twentyfour11.recall"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open Recall on Play Store"
+            ></a>
+          </article>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p>© 2026 2411Labs</p>
+      </footer>
+    </div>
+    <script>
+      (function () {
+        var email = "2411labs@gmail.com";
+        var btn = document.getElementById("contact-copy-btn");
+        var tip = document.getElementById("contact-copy-tooltip");
+        var hideTimer;
+
+        function showTip(message) {
+          clearTimeout(hideTimer);
+          tip.textContent = message;
+          tip.hidden = false;
+          tip.classList.add("copy-tooltip--visible");
+          hideTimer = setTimeout(function () {
+            tip.classList.remove("copy-tooltip--visible");
+            tip.hidden = true;
+          }, 2200);
+        }
+
+        function copyEmail() {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(email).then(
+              function () {
+                showTip("Email copied");
+              },
+              function () {
+                fallbackCopy();
+              }
+            );
+          } else {
+            fallbackCopy();
+          }
+        }
+
+        function fallbackCopy() {
+          var ta = document.createElement("textarea");
+          ta.value = email;
+          ta.setAttribute("readonly", "");
+          ta.style.position = "fixed";
+          ta.style.left = "-9999px";
+          document.body.appendChild(ta);
+          ta.select();
+          try {
+            document.execCommand("copy");
+            showTip("Email copied");
+          } catch (e) {
+            showTip("Copy failed");
+          }
+          document.body.removeChild(ta);
+        }
+
+        btn.addEventListener("click", copyEmail);
+      })();
+    </script>
+  </body>
+</html>
